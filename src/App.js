@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import styled from 'styled-components';
+import RouterComponent from './routes/router';
+import SidebarComponent from './components/sidebar';
+import GlobalStyles from './GlobalStyles';
+
+const MainContainer = styled.div`
+  display: grid;
+  grid-template-columns: minmax(150px, 20%) 1fr;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Router>
+        <MainContainer>
+          <SidebarComponent />
+          <RouterComponent />
+        </MainContainer>
+      </Router>
+    </>
   );
 }
 
