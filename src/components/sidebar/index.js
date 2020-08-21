@@ -1,40 +1,18 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Store } from '../context/context';
-
-const SidebarContainer = styled.div`
-  height: 100vh;
-  background-color: Gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const UserInfo = ({ user }) => {
-  return (
-    <div>
-      <img src={user.detail.avatar} width='50%' />
-      <p>{user.detail.userName}</p>
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <div>
-      <p>Copyright © 2020</p>
-    </div>
-  );
-};
+import { Store } from '../../context/context';
+import Footer from './footer';
+import UserInfo from './userinfo';
+import SidebarLayoutContainer from './sidebarlayout';
+import UlContainer from './menulayout';
 
 const SidebarComponent = () => {
   const { state } = useContext(Store);
   const { user } = state;
   return (
-    <SidebarContainer>
+    <SidebarLayoutContainer>
       <div>{user.loggedIn && <UserInfo user={user} />}</div>
-      <ul>
+      <UlContainer>
         {user.loggedIn ? (
           <li>
             <Link to='/'>Log out</Link>
@@ -54,9 +32,9 @@ const SidebarComponent = () => {
             </li>
           </>
         )}
-      </ul>
+      </UlContainer>
       <Footer />
-    </SidebarContainer>
+    </SidebarLayoutContainer>
   );
 };
 

@@ -1,3 +1,12 @@
+//test data
+// user: {
+//   loggedIn: true,
+//     detail: {
+//     avatar: 'https://avatars0.githubusercontent.com/u/40652510?v=4',
+//       userName: 'Francois Geyser',
+// }
+// }
+
 export const initialState = {
   user: {
     loggedIn: false,

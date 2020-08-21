@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Table from './table';
-import TableForm from './table/tableform';
+import Table from '../table';
+import TableForm from './tableform';
+import Title from '../layout/title';
 
 const dataFilter = (data, Column, Filter, Sort) => {
   if (Filter) {
@@ -54,6 +55,7 @@ const BuyersDisplay = ({ data }) => {
 
   return (
     <>
+      <Title>Buyers</Title>
       <TableForm
         headerKeys={headerKeys}
         data={data}
@@ -63,7 +65,7 @@ const BuyersDisplay = ({ data }) => {
         Column={Column}
         Sort={Sort}
       />
-      <Table headerKeys={headerKeys} data={Data} />
+      <Table headerKeys={headerKeys} data={Data} activeLink={true} />
     </>
   );
 };

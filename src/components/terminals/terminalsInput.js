@@ -1,39 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
+import styled from 'styled-components';
+import Input from '../layout/input';
+import Button from '../layout/button';
+import Title from '../layout/title';
 
-const TerminalsInput = ({ submitAction }) => {
-  const [Name, setName] = useState('');
-  const [Description, setDescription] = useState('');
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gold};
+`;
 
-  const submit = () => {
-    if (Name.length > 0 && Description.length > 0) {
-      submitAction({
-        name: Name,
-        description: Description,
-      });
-      setName('');
-      setDescription('');
-    }
-  };
+const TerminalsInput = ({
+  Name,
+  setName,
+  Description,
+  setDescription,
+  submit,
+}) => {
   return (
-    <div>
-      <input
-        name='name'
-        value={Name}
-        placeholder='Enter Name'
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <input
-        name='description'
-        value={Description}
-        placeholder='Enter decscription'
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      />
-      <button onClick={() => submit()}>Add</button>
-    </div>
+    <>
+      <Title>Terminals</Title>
+      <InputContainer>
+        <Input
+          name='name'
+          value={Name}
+          placeholder='Enter Name'
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <Input
+          name='description'
+          value={Description}
+          placeholder='Enter decscription'
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+        <Button clickHandler={() => submit()}>Add</Button>
+      </InputContainer>
+    </>
   );
 };
 

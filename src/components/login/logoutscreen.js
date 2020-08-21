@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../layout/button';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -7,17 +8,15 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h3 {
-    color: ${({ theme }) => theme.colors.red};
-  }
 `;
 
-const ErrorRouteContainer = () => {
+const LogOut = ({ handleUser }) => {
   return (
     <Container>
-      <h3>This is not the page you were looking for...</h3>
+      <p>Please use the button to log out</p>
+      <Button clickHandler={() => handleUser(false)}>Log out</Button>
     </Container>
   );
 };
 
-export default ErrorRouteContainer;
+export default LogOut;

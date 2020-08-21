@@ -1,54 +1,37 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import Table from '../table';
+import Title from '../layout/title';
 
-const TableHeader = () => {
-  const header = [
-    'Customer id',
-    'Name',
-    'Average Bill',
-    'Number of purchases',
-    'Total revenue',
-  ];
+const Container = styled.div`
+  margin: 1rem auto;
+`;
 
-  return header.map((key, index) => {
-    return <th key={index}>{key}</th>;
-  });
-};
-
-const TableBody = ({ data }) => {
-  return (
-    data &&
-    data.map(({ id, name, averageBill, numberPurchases, totalRevenue }) => {
-      return (
-        <tr key={id}>
-          <td>{id}</td>
-          <td>{name}</td>
-          <td>{averageBill}</td>
-          <td>{numberPurchases}</td>
-          <td>{totalRevenue}</td>
-        </tr>
-      );
-    })
-  );
-};
+const BackButton = styled.p`
+  color: red;
+  font-weight: bold;
+  margin: 1rem 0;
+`;
 
 const BuyerRouteContainer = ({ data }) => {
   const { id } = useParams();
   const clientData = data.filter((client) => client.id == id);
+  const headerKeys = {
+    id: 'Customer id',
+    name: 'Name',
+    averageBill: 'Average Bill',
+    numberPurchases: 'Number of purchases',
+    totalRevenue: 'Total revenue',
+  };
   return (
-    <>
-      <Link to='/buyers'>back</Link>
-      <table>
-        <thead>
-          <tr>
-            <TableHeader />
-          </tr>
-        </thead>
-        <tbody>
-          <TableBody data={clientData} />
-        </tbody>
-      </table>
-    </>
+    <Container>
+      <Link to='/buyers'>
+        <BackButton>Back to Buyers</BackButton>
+      </Link>
+      <Title>Buyer Details</Title>
+      <Table headerKeys={headerKeys} data={clientData} activeLink={false} />
+    </Container>
   );
 };
 

@@ -6,12 +6,7 @@ import BuyersRouteContainer from '../components/buyers/buyersContainer';
 import TerminalsRouteContainer from '../components/terminals/terminalsContainer';
 import LoginRouteContainer from '../components/login';
 import ErrorRouteContainer from '../components/error';
-import styled from 'styled-components';
-
-const RouterContainer = styled.div`
-  height: 100vh;
-  background-color: lightGray;
-`;
+import RouterContainer from '../components/layout/routercontainer';
 
 const ProtectedRoute = ({ children, ...rest }) => {
   const { state } = useContext(Store);

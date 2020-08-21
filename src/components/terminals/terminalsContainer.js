@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Store } from '../../context/context';
 import { types } from '../../context/types';
 
@@ -8,17 +8,35 @@ import TerminalDisplay from './terminalsDisplay';
 const TerminalsRouteContainer = () => {
   const { state, dispatch, createAction } = useContext(Store);
   const { terminals } = state;
+  const [Name, setName] = useState('');
+  const [Description, setDescription] = useState('');
 
-  const submitAddAction = (payload) => {
-    payload && dispatch(createAction(types.TERM_ADD, payload));
-  };
   const submitDelAction = (id) => {
     id && dispatch(createAction(types.TERM_DEL, id));
   };
 
+  const submit = () => {
+    if (Name.length > 0 && Description.length > 0) {
+      dispatch(
+        createAction(types.TERM_ADD, {
+          name: Name,
+          description: Description,
+        })
+      );
+      setName('');
+      setDescription('');
+    }
+  };
+
   return (
     <>
-      <TerminalsInput submitAction={submitAddAction} />
+      <TerminalsInput
+        submit={submit}
+        Name={Name}
+        setName={setName}
+        Description={Description}
+        setDescription={setDescription}
+      />
       <TerminalDisplay data={terminals} submitAction={submitDelAction} />
     </>
   );
